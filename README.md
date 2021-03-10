@@ -4,8 +4,8 @@
 To read more of this work please click [here](https://store.micropython.org/product/PYBv1.1H)
 
 # Output of task 1
-* [Voiture dataset](https://b.gorelkin.me/projects/pcaandkmeans_matlab/task1/pcatocompleteen)
+* [Voiture dataset](https://b.gorelkin.me/projects/pcaandkmeans_matlab/task1/pca)
 # Output of task 2
 * [Notes dataset](https://b.gorelkin.me/projects/pcaandkmeans_matlab/task2/notes/pcatocompleteen)
-* [Own matrix cars dataset](https://b.gorelkin.me/projects/pcaandkmeans_matlab/task2/own_matrix_cars/cars/pcatocompleteen)
-* [Voiture dataset](https://b.gorelkin.me/projects/pcaandkmeans_matlab/task2/voiture/pcatocompleteen)
+* [Own matrix cars dataset](https://b.gorelkin.me/projects/pcaandkmeans_matlab/task2/own_matrix_cars/cars/pca)
+* [Voiture dataset](https://b.gorelkin.me/projects/pcaandkmeans_matlab/task2/voiture/pca)
