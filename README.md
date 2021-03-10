@@ -1,7 +1,7 @@
 # PCA and k-Means Matlab
 *This is a student project to learn the methods of Principal Component Analysis and k-means*
 
-To read more of this work please click [here](https://store.micropython.org/product/PYBv1.1H)
+To read more of this work please click [here](https://github.com/BogdanGorelkin/PCA-and-k-means/blob/master/Tutorial.pptx)
 
 # Output of task 1
 * [Voiture dataset](https://b.gorelkin.me/projects/pcaandkmeans_matlab/task1/pca)
