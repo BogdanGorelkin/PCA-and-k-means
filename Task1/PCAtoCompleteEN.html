@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- saved from url=(0085)file:///C:/Users/bgore/Desktop/N-BCCH%20GitHub/Tutorial%202/html/PCAtoCompleteEN.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
@@ -65,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="file:///C:/Users/bgore/Desktop/N-BCCH%20GitHub/Tutorial%202/html/PCAtoCompleteEN.html#2">question 5</a></li><li><a href="file:///C:/Users/bgore/Desktop/N-BCCH%20GitHub/Tutorial%202/html/PCAtoCompleteEN.html#3">question 5</a></li><li><a href="file:///C:/Users/bgore/Desktop/N-BCCH%20GitHub/Tutorial%202/html/PCAtoCompleteEN.html#4">question 6</a></li><li><a href="file:///C:/Users/bgore/Desktop/N-BCCH%20GitHub/Tutorial%202/html/PCAtoCompleteEN.html#6">question 7</a></li></ul></div><pre class="codeinput">clc
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">question 5</a></li><li><a href="#3">question 5</a></li><li><a href="#4">question 6</a></li><li><a href="#6">question 7</a></li></ul></div><pre class="codeinput">clc
 clear <span class="string">all</span>
 close <span class="string">all</span>
 <span class="comment">%Lamrous PCA program on notes</span>
@@ -77,9 +78,10 @@ Individuals = datatext(2:31,1)
 <span class="comment">%This allows you to generate a PCA</span>
 <span class="comment">%Attention, in the latest versions of Matlab, the "princomp" function is</span>
 <span class="comment">%called otherwise,try "pca"</span>
-</pre><pre class="codeoutput">Variables =
+</pre><pre class="codeoutput">
+Variables =
 
-  1×7 cell array
+  1&times;7 cell array
 
   Columns 1 through 5
 
@@ -92,7 +94,7 @@ Individuals = datatext(2:31,1)
 
 Individuals =
 
-  30×1 cell array
+  30&times;1 cell array
 
     'PANDA'
     'TWINGO'
@@ -147,14 +149,16 @@ title <span class="string">'Cluster without PCA'</span>
 text(DataKmeans(:,1),DataKmeans(:,2),Individuals);
 hold <span class="string">off</span>
 <span class="comment">% end</span>
-</pre><pre class="codeoutput">fixedCenter =
+</pre><pre class="codeoutput">
+fixedCenter =
 
     0.5497    0.6404    0.1612    0.3691    0.2363    0.9093    0.1351
     0.5526    0.5966    0.4179    0.0803    0.9943    0.7908    0.5503
 
-</pre><img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_01.png" alt=""> <h2 id="4">question 6</h2><p>What is the best grouping? answer: 2 see how does it work here: https://fr.mathworks.com/help/stats/evalclusters.html</p><pre class="codeinput">eva = evalclusters(Data,<span class="string">'kmeans'</span>,<span class="string">'CalinskiHarabasz'</span>,<span class="string">'KList'</span>,[1:2]<span class="keyword">...</span><span class="comment">"maximum clustering can be 30, but we should work with two"</span>
+</pre><img vspace="5" hspace="5" src="PCAtoCompleteEN_01.png" alt=""> <h2 id="4">question 6</h2><p>What is the best grouping? answer: 2 see how does it work here: https://fr.mathworks.com/help/stats/evalclusters.html</p><pre class="codeinput">eva = evalclusters(Data,<span class="string">'kmeans'</span>,<span class="string">'CalinskiHarabasz'</span>,<span class="string">'KList'</span>,[1:2]<span class="keyword">...</span><span class="comment">"maximum clustering can be 30, but we should work with two"</span>
     )
-</pre><pre class="codeoutput">eva = 
+</pre><pre class="codeoutput">
+eva = 
 
   CalinskiHarabaszEvaluation with properties:
 
@@ -236,7 +240,8 @@ line([0 0],[0,0],[z1 zu])
 
 figure(<span class="string">'Name'</span>,<span class="string">'Variables'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
 plot(coeff(:,1),coeff(:,2),<span class="string">'*'</span>);
-</pre><pre class="codeoutput">coeff =
+</pre><pre class="codeoutput">
+coeff =
 
     0.4044   -0.0790   -0.5043   -0.4002    0.0680   -0.1920    0.6118
     0.3917    0.2147   -0.3307    0.8220    0.1197   -0.0303    0.0112
@@ -302,7 +307,7 @@ Information_Percentage =
     0.9951
     1.0000
 
-</pre><img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_02.png" alt=""> <img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_03.png" alt=""> <img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_04.png" alt=""> <img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_05.png" alt=""> <img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_06.png" alt=""> <img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_07.png" alt=""> <img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_08.png" alt=""> <h2 id="6">question 7</h2><p>Unroll your algorithm on the results of a PCA with at least 94% of information. What is your observation?</p><p>We got from Eigenvalue spectrum figure that 70 is a 100% percent its mean that infomation which is more then 94% containts in first 3 splash, thats why we calculate for 65.8 as 94% of the information after PCA we got 0.6905 CriterionValues using SilhouetteEvaluation with kmeans of 2 groups which was 0.6636 with the same without PCA. It's been concluded that after PCA if we apply kmeans then it provides better quality with clustering.</p><pre class="codeinput">fixedCenter = rand(2,3)
+</pre><img vspace="5" hspace="5" src="PCAtoCompleteEN_02.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_03.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_04.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_05.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_06.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_07.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_08.png" alt=""> <h2 id="6">question 7</h2><p>Unroll your algorithm on the results of a PCA with at least 94% of information. What is your observation?</p><p>We got from Eigenvalue spectrum figure that 70 is a 100% percent its mean that infomation which is more then 94% containts in first 3 splash, thats why we calculate for 65.8 as 94% of the information after PCA we got 0.6905 CriterionValues using SilhouetteEvaluation with kmeans of 2 groups which was 0.6636 with the same without PCA. It's been concluded that after PCA if we apply kmeans then it provides better quality with clustering.</p><pre class="codeinput">fixedCenter = rand(2,3)
 <span class="comment">% Retain first three principal components</span>
 selectedThree = scores(:,1:3);
 [idx,centres]=kmeans(selectedThree,2,<span class="string">'Replicates'</span>,1,<span class="string">'Start'</span>,fixedCenter);
@@ -326,7 +331,8 @@ eva = evalclusters(Data,<span class="string">'kmeans'</span>,<span class="string
 
 eva = evalclusters(selectedThree,<span class="string">'kmeans'</span>,<span class="string">'Silhouette'</span>,<span class="string">'KList'</span>,[1:2]<span class="keyword">...</span><span class="comment">"maximum clustering can be 30, but we should work with two"</span>
     )
-</pre><pre class="codeoutput">fixedCenter =
+</pre><pre class="codeoutput">
+fixedCenter =
 
     0.9700    0.2733    0.9077
     0.6951    0.9511    0.4574
@@ -351,177 +357,8 @@ eva =
     CriterionValues: [NaN 0.6905]
            OptimalK: 2
 
-</pre><img vspace="5" hspace="5" src="./PCAtoCompleteEN_files/PCAtoCompleteEN_09.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB® R2016b</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="PCAtoCompleteEN_09.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%%
-clc
-clear all
-close all
-%Lamrous PCA program on notes
-[dataNum, datatext, alldata] = xlsread('voiture.xls','voiture2');
-Data=dataNum(:,1:7);
-Variables = datatext(1,2:8)
-Individuals = datatext(2:31,1)
-
-%This allows you to generate a PCA
-%Attention, in the latest versions of Matlab, the "princomp" function is
-%called otherwise,try "pca"
- 
-
-%% question 5
-% 5) Unroll the Clustering Kmeans algorithm on the global matrix with the following parameters:
-% - Initialization: uniform
-% - Number of groups: 2
-% - Number of replications: 1 
-
-[idx,centres]=kmeans(Data,2,'Replicates',1,'Start','uniform');
-%% question 5 
-% Is your algorithm stable from one execution to another? If "no" in what condition would it be?
-% Our algorithm is unstable because at each iteration the center is chosen randomly. 
-% the code suggested below manually sets the center for clustering
-
-[dataNum, datatext, alldata] = xlsread('voiture.xls','voiture2');
-DataKmeans=dataNum(:,1:7);
-
-%for i=1:10
-%fixedCenter = randi([1 5],2,7)
-fixedCenter = rand(2,7)
-[idx,centres]=kmeans(DataKmeans,2,'Replicates',1,'Start',fixedCenter);
-
-
-figure;
-plot(DataKmeans(idx==1,1),DataKmeans(idx==1,2),'r.','MarkerSize',12)
-hold on
-plot(DataKmeans(idx==2,1),DataKmeans(idx==2,2),'b.','MarkerSize',12)
-plot(centres(:,1),centres(:,2),'kx',...
-     'MarkerSize',15,'LineWidth',3) 
-legend('Cluster 1','Cluster 2','Centroids',...
-       'Location','NW')
-title 'Cluster without PCA'
-text(DataKmeans(:,1),DataKmeans(:,2),Individuals); 
-hold off
-% end
-
-%% question 6 
-% What is the best grouping? 
-% answer: 2
-% see how does it work here: https://fr.mathworks.com/help/stats/evalclusters.html
-
-eva = evalclusters(Data,'kmeans','CalinskiHarabasz','KList',[1:2]..."maximum clustering can be 30, but we should work with two" 
-    )
-
-%%
-[coeff,scores,eigen_values] = pca(zscore(Data));
-
- coeff % coordinates of variables in the projection space
- scores % coordinates of individuals in the projection space
- eigen_values % Eigenvalues
-
-
-%The following command is used to create the graph of the eigenvalues.
-
-figure('Name','Eigenvalue spectrum','NumberTitle','off'); 
-bar(eigen_values);
- 
-% And this gives us the cumulative inertias of the eigenvalues.
- 
-Information_Percentage = cumsum(eigen_values)./sum(eigen_values)
-figure('Name','% of cumulative inertia','NumberTitle','off'); 
-bar(Information_Percentage);
- 
-
-% This command is used to produce the factorial map of individuals on
-% the two main axes
- 
-figure('Name','individus','NumberTitle','off'); 
-plot(scores(:,1),scores(:,2),'r+');
-text(scores(:,1),scores(:,2),Individuals); 
-a  = axis;
-xl = a(1);xu = a(2);yl = a(3);yu = a(4);
-xlabel('1st Principal Component')
-ylabel('2nd Principal Component')
-hold on
-line([xl xu],[0 0])
-line([0 0],[yl yu])
-%axis 1 axis 3
-figure('Name','individuals 1/3','NumberTitle','off'); 
-plot(scores(:,1),scores(:,3),'r+');
-text(scores(:,1),scores(:,3),Individuals); 
-a  = axis;
-xl = a(1);xu = a(2);yl = a(3);yu = a(4);
-xlabel('1st Principal Component')
-ylabel('2nd Principal Component')
-hold on
-line([xl xu],[0 0])
-line([0 0],[yl yu])
-%axis 2 axis 3
-figure('Name','individuals 2/3','NumberTitle','off'); 
-plot(scores(:,1),scores(:,3),'r+');
-text(scores(:,1),scores(:,3),Individuals); 
-a  = axis;
-xl = a(1);xu = a(2);yl = a(3);yu = a(4);
-xlabel('1st Principal Component')
-ylabel('2nd Principal Component')
-hold on
-line([xl xu],[0 0])
-line([0 0],[yl yu])
-% In 3D
-figure('Name','individuals 1 2 3','NumberTitle','off'); 
-plot3(scores(:,1),scores(:,2),scores(:,3),'r+');
-text(scores(:,1),scores(:,2),scores(:,3),Individuals); 
-a  = axis;
-xl = a(1);xu = a(2);yl = a(3);yu = a(4);z1=a(5);zu=a(6);
-xlabel('1st Principal Component')
-ylabel('2nd Principal Component')
-zlabel('3nd Principal Component')
-hold on
-line([xl xu],[0, 0],[0, 0])
-line([0 0],[yl yu],[0,0])
-line([0 0],[0,0],[z1 zu])
-
-% This command is used to create the circle of variable correlations
-% on the two main axes.
- 
-figure('Name','Variables','NumberTitle','off'); 
-plot(coeff(:,1),coeff(:,2),'*');
-
-
-
-%% question 7
-% Unroll your algorithm on the results of a PCA with at least 94% of information.
-% What is your observation?
-% 
-% We got from Eigenvalue spectrum figure that 70 is a 100% percent
-% its mean that infomation which is more then 94% containts in first 3
-% splash, thats why we calculate for 65.8 as 94%
-% of the information
-% after PCA we got 0.6905 CriterionValues using SilhouetteEvaluation with
-% kmeans of 2 groups which was 0.6636 with the same without PCA. It's been
-% concluded that after PCA if we apply kmeans then it provides better quality with clustering. 
-
-fixedCenter = rand(2,3)
-% Retain first three principal components
-selectedThree = scores(:,1:3);
-[idx,centres]=kmeans(selectedThree,2,'Replicates',1,'Start',fixedCenter);
-
-
-figure;
-plot(selectedThree(idx==1,1),selectedThree(idx==1,2),'r.','MarkerSize',12)
-hold on
-plot(selectedThree(idx==2,1),selectedThree(idx==2,2),'b.','MarkerSize',12)
-plot(centres(:,1),centres(:,2),'kx',...
-     'MarkerSize',15,'LineWidth',3) 
-legend('Cluster 1','Cluster 2','Centroids',...
-       'Location','NW')
-title 'Cluster with KMeans and almost 94% information from PCA'
-text(scores(:,1),scores(:,2),Individuals); 
-hold off
-
-
-eva = evalclusters(Data,'kmeans','Silhouette','KList',[1:2]..."maximum clustering can be 30, but we should work with two" 
-    )
-
-eva = evalclusters(selectedThree,'kmeans','Silhouette','KList',[1:2]..."maximum clustering can be 30, but we should work with two" 
-    )
+%%clcclear allclose all%Lamrous PCA program on notes[dataNum, datatext, alldata] = xlsread('voiture.xls','voiture2');Data=dataNum(:,1:7);Variables = datatext(1,2:8)Individuals = datatext(2:31,1)%This allows you to generate a PCA%Attention, in the latest versions of Matlab, the "princomp" function is%called otherwise,try "pca" %% question 5% 5) Unroll the Clustering Kmeans algorithm on the global matrix with the following parameters:% - Initialization: uniform% - Number of groups: 2% - Number of replications: 1 [idx,centres]=kmeans(Data,2,'Replicates',1,'Start','uniform');%% question 5 % Is your algorithm stable from one execution to another? If "no" in what condition would it be?% Our algorithm is unstable because at each iteration the center is chosen randomly. % the code suggested below manually sets the center for clustering[dataNum, datatext, alldata] = xlsread('voiture.xls','voiture2');DataKmeans=dataNum(:,1:7);%for i=1:10%fixedCenter = randi([1 5],2,7)fixedCenter = rand(2,7)[idx,centres]=kmeans(DataKmeans,2,'Replicates',1,'Start',fixedCenter);figure;plot(DataKmeans(idx==1,1),DataKmeans(idx==1,2),'r.','MarkerSize',12)hold onplot(DataKmeans(idx==2,1),DataKmeans(idx==2,2),'b.','MarkerSize',12)plot(centres(:,1),centres(:,2),'kx',...     'MarkerSize',15,'LineWidth',3) legend('Cluster 1','Cluster 2','Centroids',...       'Location','NW')title 'Cluster without PCA'text(DataKmeans(:,1),DataKmeans(:,2),Individuals); hold off% end%% question 6 % What is the best grouping? % answer: 2% see how does it work here: https://fr.mathworks.com/help/stats/evalclusters.htmleva = evalclusters(Data,'kmeans','CalinskiHarabasz','KList',[1:2]..."maximum clustering can be 30, but we should work with two"     )%%[coeff,scores,eigen_values] = pca(zscore(Data)); coeff % coordinates of variables in the projection space scores % coordinates of individuals in the projection space eigen_values % Eigenvalues%The following command is used to create the graph of the eigenvalues.figure('Name','Eigenvalue spectrum','NumberTitle','off'); bar(eigen_values); % And this gives us the cumulative inertias of the eigenvalues. Information_Percentage = cumsum(eigen_values)./sum(eigen_values)figure('Name','% of cumulative inertia','NumberTitle','off'); bar(Information_Percentage); % This command is used to produce the factorial map of individuals on% the two main axes figure('Name','individus','NumberTitle','off'); plot(scores(:,1),scores(:,2),'r+');text(scores(:,1),scores(:,2),Individuals); a  = axis;xl = a(1);xu = a(2);yl = a(3);yu = a(4);xlabel('1st Principal Component')ylabel('2nd Principal Component')hold online([xl xu],[0 0])line([0 0],[yl yu])%axis 1 axis 3figure('Name','individuals 1/3','NumberTitle','off'); plot(scores(:,1),scores(:,3),'r+');text(scores(:,1),scores(:,3),Individuals); a  = axis;xl = a(1);xu = a(2);yl = a(3);yu = a(4);xlabel('1st Principal Component')ylabel('2nd Principal Component')hold online([xl xu],[0 0])line([0 0],[yl yu])%axis 2 axis 3figure('Name','individuals 2/3','NumberTitle','off'); plot(scores(:,1),scores(:,3),'r+');text(scores(:,1),scores(:,3),Individuals); a  = axis;xl = a(1);xu = a(2);yl = a(3);yu = a(4);xlabel('1st Principal Component')ylabel('2nd Principal Component')hold online([xl xu],[0 0])line([0 0],[yl yu])% In 3Dfigure('Name','individuals 1 2 3','NumberTitle','off'); plot3(scores(:,1),scores(:,2),scores(:,3),'r+');text(scores(:,1),scores(:,2),scores(:,3),Individuals); a  = axis;xl = a(1);xu = a(2);yl = a(3);yu = a(4);z1=a(5);zu=a(6);xlabel('1st Principal Component')ylabel('2nd Principal Component')zlabel('3nd Principal Component')hold online([xl xu],[0, 0],[0, 0])line([0 0],[yl yu],[0,0])line([0 0],[0,0],[z1 zu])% This command is used to create the circle of variable correlations% on the two main axes. figure('Name','Variables','NumberTitle','off'); plot(coeff(:,1),coeff(:,2),'*');%% question 7% Unroll your algorithm on the results of a PCA with at least 94% of information.% What is your observation?% % We got from Eigenvalue spectrum figure that 70 is a 100% percent% its mean that infomation which is more then 94% containts in first 3% splash, thats why we calculate for 65.8 as 94%% of the information% after PCA we got 0.6905 CriterionValues using SilhouetteEvaluation with% kmeans of 2 groups which was 0.6636 with the same without PCA. It's been% concluded that after PCA if we apply kmeans then it provides better quality with clustering. fixedCenter = rand(2,3)% Retain first three principal componentsselectedThree = scores(:,1:3);[idx,centres]=kmeans(selectedThree,2,'Replicates',1,'Start',fixedCenter);figure;plot(selectedThree(idx==1,1),selectedThree(idx==1,2),'r.','MarkerSize',12)hold onplot(selectedThree(idx==2,1),selectedThree(idx==2,2),'b.','MarkerSize',12)plot(centres(:,1),centres(:,2),'kx',...     'MarkerSize',15,'LineWidth',3) legend('Cluster 1','Cluster 2','Centroids',...       'Location','NW')title 'Cluster with KMeans and almost 94% information from PCA'text(scores(:,1),scores(:,2),Individuals); hold offeva = evalclusters(Data,'kmeans','Silhouette','KList',[1:2]..."maximum clustering can be 30, but we should work with two"     )eva = evalclusters(selectedThree,'kmeans','Silhouette','KList',[1:2]..."maximum clustering can be 30, but we should work with two"     )
 ##### SOURCE END #####
 --></body></html>

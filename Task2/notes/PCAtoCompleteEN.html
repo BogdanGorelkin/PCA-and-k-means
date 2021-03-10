@@ -1,0 +1,385 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PCAtoCompleteEN</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-23"><meta name="DC.source" content="PCAtoCompleteEN.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">sphere in 3d</a></li></ul></div><pre class="codeinput"><span class="comment">%Lamrous PCA program on notes</span>
+[dataNum, datatext, alldata] = xlsread(<span class="string">'notes.xls'</span>,<span class="string">'DATA'</span>);
+Data=dataNum(:,1:4);
+Variables = datatext(1,2:5)
+Individuals = datatext(2:30,1)
+
+<span class="comment">%This allows you to generate a PCA</span>
+<span class="comment">%Attention, in the latest versions of Matlab, the "princomp" function is</span>
+<span class="comment">%called otherwise,try "pca"</span>
+
+[coeff,scores,eigen_values] = princomp(zscore(Data));
+
+ coeff <span class="comment">% coordinates of variables in the projection space</span>
+ scores <span class="comment">% coordinates of individuals in the projection space</span>
+ eigen_values <span class="comment">% Eigenvalues</span>
+
+
+<span class="comment">%The following command is used to create the graph of the eigenvalues.</span>
+
+figure(<span class="string">'Name'</span>,<span class="string">'Eigenvalue spectrum'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
+bar(eigen_values);
+
+<span class="comment">% And this gives us the cumulative inertias of the eigenvalues.</span>
+
+Information_Percentage = cumsum(eigen_values)./sum(eigen_values)
+figure(<span class="string">'Name'</span>,<span class="string">'% of cumulative inertia'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
+bar(Information_Percentage);
+
+
+<span class="comment">% This command is used to produce the factorial map of individuals on</span>
+<span class="comment">% the two main axes</span>
+
+figure(<span class="string">'Name'</span>,<span class="string">'individus'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
+plot(scores(:,1),scores(:,2),<span class="string">'r+'</span>);
+text(scores(:,1),scores(:,2),Individuals);
+a  = axis;
+xl = a(1);xu = a(2);yl = a(3);yu = a(4);
+xlabel(<span class="string">'1st Principal Component'</span>)
+ylabel(<span class="string">'2nd Principal Component'</span>)
+hold <span class="string">on</span>
+line([xl xu],[0 0])
+line([0 0],[yl yu])
+<span class="comment">%axis 1 axis 3</span>
+figure(<span class="string">'Name'</span>,<span class="string">'individuals 1/3'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
+plot(scores(:,1),scores(:,3),<span class="string">'r+'</span>);
+text(scores(:,1),scores(:,3),Individuals);
+a  = axis;
+xl = a(1);xu = a(2);yl = a(3);yu = a(4);
+xlabel(<span class="string">'1st Principal Component'</span>)
+ylabel(<span class="string">'2nd Principal Component'</span>)
+hold <span class="string">on</span>
+line([xl xu],[0 0])
+line([0 0],[yl yu])
+<span class="comment">%axis 2 axis 3</span>
+figure(<span class="string">'Name'</span>,<span class="string">'individuals 2/3'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
+plot(scores(:,1),scores(:,3),<span class="string">'r+'</span>);
+text(scores(:,1),scores(:,3),Individuals);
+a  = axis;
+xl = a(1);xu = a(2);yl = a(3);yu = a(4);
+xlabel(<span class="string">'1st Principal Component'</span>)
+ylabel(<span class="string">'2nd Principal Component'</span>)
+hold <span class="string">on</span>
+line([xl xu],[0 0])
+line([0 0],[yl yu])
+<span class="comment">% In 3D</span>
+figure(<span class="string">'Name'</span>,<span class="string">'individuals 1 2 3'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
+plot3(scores(:,1),scores(:,2),scores(:,3),<span class="string">'r+'</span>);
+text(scores(:,1),scores(:,2),scores(:,3),Individuals);
+a  = axis;
+xl = a(1);xu = a(2);yl = a(3);yu = a(4);z1=a(5);zu=a(6);
+xlabel(<span class="string">'1st Principal Component'</span>)
+ylabel(<span class="string">'2nd Principal Component'</span>)
+zlabel(<span class="string">'3nd Principal Component'</span>)
+hold <span class="string">on</span>
+line([xl xu],[0, 0],[0, 0])
+line([0 0],[yl yu],[0,0])
+line([0 0],[0,0],[z1 zu])
+
+<span class="comment">% This command is used to create the circle of variable correlations</span>
+<span class="comment">% on the two main axes.</span>
+
+figure(<span class="string">'Name'</span>,<span class="string">'Variables'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
+plot(coeff(:,1),coeff(:,2),<span class="string">'*'</span>);
+
+hold <span class="string">on</span>
+[x,y,z] = cylinder(1,200);
+plot(x(1,:),y(1,:))
+hold <span class="string">on</span>
+line([-1 1],[0 0])
+line([0 0],[-1 1])
+axis <span class="string">equal</span>
+</pre><pre class="codeoutput">
+Variables =
+
+  1&times;4 cell array
+
+    'Maths'    'Physique'    'Francais'    'Anglais'
+
+
+Individuals =
+
+  29&times;1 cell array
+
+    'Basile'
+    'Thierry'
+    'Genevieve'
+    'Odilon'
+    'Edouard'
+    'Mylaine'
+    'Lucien'
+    'Alix'
+    'Guillaume'
+    'Paulin'
+    'Tatiana'
+    'Yvette'
+    'Nina'
+    'Remi'
+    'Marcel'
+    'Roseline'
+    'Prisca'
+    'Marius'
+    'Sebastien'
+    'Agnes'
+    'Vincent'
+    'Bernard'
+    'Francois'
+    'Paul'
+    'Paule'
+    'Angele'
+    'Thomas'
+    'Gildas'
+    'Martine'
+
+
+coeff =
+
+    0.4807    0.5289   -0.5460    0.4371
+    0.5143    0.4760    0.5561   -0.4468
+    0.5026   -0.4963    0.4187    0.5707
+    0.5018   -0.4973   -0.4662   -0.5324
+
+
+scores =
+
+    0.9954    0.2899    0.2649   -0.0312
+   -2.5917   -0.1891    0.2362    0.1536
+   -0.2890    1.9380   -0.0689   -0.1691
+    0.3671    2.3905    0.0128   -0.0449
+    1.6047   -0.1245   -0.1337   -0.2674
+   -0.0953   -1.0123    0.0808   -0.0682
+    0.2830   -2.2986    0.1366    0.2810
+    0.4260   -1.5282   -0.0310   -0.1570
+    0.2591   -0.4506    0.0892   -0.2663
+    0.5574   -2.0363    0.0705   -0.4207
+   -2.7481    0.6886    0.1792   -0.3771
+    0.2346    1.4201    0.0032   -0.0283
+    1.1738    0.4908   -0.1246   -0.0963
+    0.0777    2.3206   -0.0924    0.2264
+   -0.8471   -1.5376   -0.3049    0.0516
+    0.6552    0.9933    0.1906   -0.1706
+    2.5904   -0.1755    0.1995    0.4176
+   -0.7285   -1.8439   -0.2101   -0.0203
+    0.0525   -0.2459    0.2812   -0.0471
+   -2.2489   -0.9059    0.5137    0.1299
+    2.1701    0.2399    0.0314    0.1672
+   -2.5167    0.1256   -0.0766    0.5907
+    1.5689    0.4564    0.0687   -0.2476
+    0.5251    0.0210    0.3650    0.0757
+    0.2218    1.6220   -0.0035    0.1636
+   -2.9239    0.3278   -0.2186   -0.2442
+   -2.1443    0.3123   -0.6454    0.1055
+    1.6425   -0.6959   -0.1715    0.3352
+    1.7282   -0.5925   -0.6422   -0.0418
+
+
+eigen_values =
+
+    2.3661
+    1.5118
+    0.0661
+    0.0560
+
+
+Information_Percentage =
+
+    0.5915
+    0.9695
+    0.9860
+    1.0000
+
+</pre><img vspace="5" hspace="5" src="PCAtoCompleteEN_files/PCAtoCompleteEN_01.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_files/PCAtoCompleteEN_02.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_files/PCAtoCompleteEN_03.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_files/PCAtoCompleteEN_04.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_files/PCAtoCompleteEN_05.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_files/PCAtoCompleteEN_06.png" alt=""> <img vspace="5" hspace="5" src="PCAtoCompleteEN_files/PCAtoCompleteEN_07.png" alt=""> <h2 id="2">sphere in 3d</h2><pre class="codeinput">figure(<span class="string">'Name'</span>,<span class="string">'Variables'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>);
+plot3(coeff(:,1),coeff(:,2),coeff(:,3),<span class="string">'*'</span>);
+
+hold <span class="string">on</span>
+[x,y,z] = sphere;
+m = mesh(x, y, z);
+set(m, <span class="string">'facecolor'</span>, <span class="string">'none'</span>);
+text(coeff(:,1)+.1,coeff(:,2)+.1,coeff(:,3)+.1,Variables);
+
+hold <span class="string">on</span>
+line([-1 1],[0 0],[0 0])
+line([0 0],[-1 1],[0 0])
+line([0,0],[0,0],[-1,1])
+axis <span class="string">equal</span>
+</pre><img vspace="5" hspace="5" src="PCAtoCompleteEN_files/PCAtoCompleteEN_08.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%Lamrous PCA program on notes
+[dataNum, datatext, alldata] = xlsread('notes.xls','DATA');
+Data=dataNum(:,1:4);
+Variables = datatext(1,2:5)
+Individuals = datatext(2:30,1)
+
+%This allows you to generate a PCA
+%Attention, in the latest versions of Matlab, the "princomp" function is
+%called otherwise,try "pca"
+ 
+[coeff,scores,eigen_values] = princomp(zscore(Data));
+
+ coeff % coordinates of variables in the projection space
+ scores % coordinates of individuals in the projection space
+ eigen_values % Eigenvalues
+ 
+ 
+%The following command is used to create the graph of the eigenvalues.
+
+figure('Name','Eigenvalue spectrum','NumberTitle','off'); 
+bar(eigen_values);
+ 
+% And this gives us the cumulative inertias of the eigenvalues.
+ 
+Information_Percentage = cumsum(eigen_values)./sum(eigen_values)
+figure('Name','% of cumulative inertia','NumberTitle','off'); 
+bar(Information_Percentage);
+ 
+
+% This command is used to produce the factorial map of individuals on
+% the two main axes
+ 
+figure('Name','individus','NumberTitle','off'); 
+plot(scores(:,1),scores(:,2),'r+');
+text(scores(:,1),scores(:,2),Individuals); 
+a  = axis;
+xl = a(1);xu = a(2);yl = a(3);yu = a(4);
+xlabel('1st Principal Component')
+ylabel('2nd Principal Component')
+hold on
+line([xl xu],[0 0])
+line([0 0],[yl yu])
+%axis 1 axis 3
+figure('Name','individuals 1/3','NumberTitle','off'); 
+plot(scores(:,1),scores(:,3),'r+');
+text(scores(:,1),scores(:,3),Individuals); 
+a  = axis;
+xl = a(1);xu = a(2);yl = a(3);yu = a(4);
+xlabel('1st Principal Component')
+ylabel('2nd Principal Component')
+hold on
+line([xl xu],[0 0])
+line([0 0],[yl yu])
+%axis 2 axis 3
+figure('Name','individuals 2/3','NumberTitle','off'); 
+plot(scores(:,1),scores(:,3),'r+');
+text(scores(:,1),scores(:,3),Individuals); 
+a  = axis;
+xl = a(1);xu = a(2);yl = a(3);yu = a(4);
+xlabel('1st Principal Component')
+ylabel('2nd Principal Component')
+hold on
+line([xl xu],[0 0])
+line([0 0],[yl yu])
+% In 3D
+figure('Name','individuals 1 2 3','NumberTitle','off'); 
+plot3(scores(:,1),scores(:,2),scores(:,3),'r+');
+text(scores(:,1),scores(:,2),scores(:,3),Individuals); 
+a  = axis;
+xl = a(1);xu = a(2);yl = a(3);yu = a(4);z1=a(5);zu=a(6);
+xlabel('1st Principal Component')
+ylabel('2nd Principal Component')
+zlabel('3nd Principal Component')
+hold on
+line([xl xu],[0, 0],[0, 0])
+line([0 0],[yl yu],[0,0])
+line([0 0],[0,0],[z1 zu])
+
+% This command is used to create the circle of variable correlations
+% on the two main axes.
+ 
+figure('Name','Variables','NumberTitle','off'); 
+plot(coeff(:,1),coeff(:,2),'*');
+  
+hold on
+[x,y,z] = cylinder(1,200);
+plot(x(1,:),y(1,:))
+hold on
+line([-1 1],[0 0])
+line([0 0],[-1 1])
+axis equal
+%% sphere in 3d
+figure('Name','Variables','NumberTitle','off'); 
+plot3(coeff(:,1),coeff(:,2),coeff(:,3),'*');
+  
+hold on
+[x,y,z] = sphere;
+m = mesh(x, y, z);
+set(m, 'facecolor', 'none');
+text(coeff(:,1)+.1,coeff(:,2)+.1,coeff(:,3)+.1,Variables);
+
+hold on
+line([-1 1],[0 0],[0 0])
+line([0 0],[-1 1],[0 0])
+line([0,0],[0,0],[-1,1])
+axis equal
+ 
+
+
+##### SOURCE END #####
+--></body></html>
